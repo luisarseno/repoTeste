@@ -7,6 +7,7 @@ import br.com.gastronomia.model.Usuario;
 import org.junit.Test;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,7 +15,9 @@ public class TestUsuarioBO {
 	UsuarioBO usuario = new UsuarioBO();
     @Test
     public void testCreateUsuario()  throws PersistenciaException, ValidationException {
-        Usuario usuarioNovo = new Usuario("030222222222",  "Luis Gustavo Arseno Santana");
+        Random random = new Random();
+        String cpf = Integer.toString(random.nextInt(99999999));
+        Usuario usuarioNovo = new Usuario(cpf,  "Luis Gustavo Arseno Santana");
         usuarioNovo.setSenha("teste123");
         try {
             boolean usuarioCriado = usuario.createUser(usuarioNovo);
